@@ -89,10 +89,34 @@ Once permission is granted, the request passes into the Kernel Layer, which acts
 <details>
 <summary>🗣️ <b>Phase 2: Implementing WebSockets & Asyncio for Real-Time Audio-to-Text</b></summary>
 <br>
-Gives Saiga the ability to hear user requests in real-time. This works by implementing WebSockets, asyncio, and Muse Voice Transcribe 1.0 to provide highly accurate, low-latency, and fast audio-to-text concurrency management, ensuring the main execution thread remains non-blocking while streaming real-time audio data chunks.
-<br><br>
-<i>[Drag and drop your Phase 2 diagram image here]</i>
+
+Now that the software has performed a successful handshake with the low-level hardware, the objective of this phase is to give Saiga the ability to hear user requests in real-time. This works by implementing WebSockets, `asyncio`, and Meta's **Muse Voice Transcribe 1.0** to provide highly accurate, low-latency, and ultra-reliable fast audio-to-text transformation where continuous execution is vital.
+
+### The Real-Time Network Challenge
+
+The primary challenge in Phase 2 was minimizing the response-request cycle to conserve network bandwidth and eliminate processing latency. 
+
+- **The WebSocket Edge:** To solve this, Saiga implements a native WebSocket layer. This provides a highly efficient, bidirectional ("two-way") connection rather than relying on traditional, high-overhead "one-way" HTTP protocols.
+- **The Telephone Analogy:** This specific networking stack allows Muse Voice Transcribe 1.0 to send raw audio data chunks and receive structured text transcripts simultaneously without having to establish a brand-new handshake for every request. Think of it like a telephone call where both parties can speak and listen at the exact same time, compared to a clunky walkie-talkie that requires constant clicking to toggle half-duplex transmission.
+- **Asyncio Concurrency:** Additionally, `asyncio` handles the core concurrency management. This ensures that the primary execution loop remains completely non-blocking while streaming live audio data packages in the background.
+
+### The Audio Ingestion & Pipeline Path
+
+The end-to-end processing pipeline handles real-time capture and streaming through three distinct phases:
+
+1. **Hardware Capture:** An imported `sounddevice` library hooks into the system microphone, capturing raw physical sound waves and instantly transforming them into structured numerical data arrays that Python can read, manipulate, and compress.
+2. **Buffer Management:** Raw data chunks are queued up inside an asynchronous data buffer loop (`asyncio.Queue`) at a blazing rate of **12 chunks per second**, keeping microphone ingestion isolated from execution blocks.
+3. **Upstream Streaming & Filtering:** The active WebSocket tunnel routes these raw PCM audio chunks straight up to Meta's servers. The engine automatically filters out constant background room noise and microphone static hum. Saiga allows users to speak naturally at their own pace, terminating the stream gracefully only when speech pauses are detected.
+
+<br>
+
+#### Design
+
+<img width="748" height="342" alt="Phase1 drawio" src="https://github.com/user-attachments/assets/ff7746d5-da0d-4bd6-a7ff-e3652594a3d4" />
+
+
 </details>
+
 
 <details>
 <summary>👁️ <b>Phase 3: Multimodal Vision Pipeline (Muse Wonder 1.0)</b></summary>
