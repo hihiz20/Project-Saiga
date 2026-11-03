@@ -1,6 +1,7 @@
 # Project Saiga: An Interactive Muti-Modal AI Agent built with Meta Muse Models
 
-Project Saiga is a hands-free, multi-modal desktop automation agent built for the Meta Global AI Developer Hackathon. By combining real-time audio transcription pipelines with computer vision orchestration, Saiga bridges digital accessibility gaps—allowing individuals with mobility constraints, hand arthritis, or elderly users to fully control their desktop environment using intuitive voice commands.
+Project Saiga is a hands-free interactive Multi-Modal AI Agent that allows control over the keyboard and mouse. Saiga works by waiting and listening for the user's command and takes that command to perform sequential desktop actions inside the user’s computer operating system (Windows or macOS) by moving the cursor or typing. The project aims to help individuals with daily automation whenever they need an extra hand. Saiga not only focuses on daily task automation but aids seniors who are having a hard time navigating the operating system including those with disabilities and hand arthritis to reduce pain. Saiga can perform actions like opening a new tab, writing an email, online shopping, help book reservations, or help users with some tasks without having to constantly copy-pasting back and forth into web-browser sidebars just to parse your screen
+
 
 ## 🚀 Core Capabilities
 - **Real-Time Voice Streaming:** Orchestrates real-time audio-to-text pipelines utilizing Websockets and Asyncio for ultra-low latency transcription.
