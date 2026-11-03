@@ -49,9 +49,7 @@ Here is the end-to-end data pipeline from voice capture to mouse automation:
 <i>[Drag and drop your Architecture Design flowchart image here]</i>
 </details>
 
-<details>
-<summary>⏱️ <b>Phase 1: Low-Level OS Integration</b></summary>
-<br>
+
 <details>
 <summary>⏱️ <b>Phase 1: Low-Level OS Integration</b></summary>
 <br>
@@ -79,15 +77,14 @@ Once permission is granted, the request passes into the Kernel Layer, which acts
 
 <br>
 
-#### System Integration Blueprint
-*Drag and drop your Phase 1 software/hardware layer diagram image directly here!*
+#### Design
+
+<img width="598" height="159" alt="Screenshot 2026-11-03 at 4 47 52 PM" src="https://github.com/user-attachments/assets/661cf9e0-63e1-419a-aa19-f712abec6777" />
+
+
 
 </details>
 
-
-<br><br>
-<i>[Drag and drop your Phase 1 diagram image here]</i>
-</details>
 
 <details>
 <summary>🗣️ <b>Phase 2: Implementing WebSockets & Asyncio for Real-Time Audio-to-Text</b></summary>
