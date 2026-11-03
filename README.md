@@ -120,10 +120,31 @@ The end-to-end processing pipeline handles real-time capture and streaming throu
 <details>
 <summary>👁️ <b>Phase 3: Multimodal Vision Pipeline (Muse Wonder 1.0)</b></summary>
 <br>
-Allows Saiga to see what is on the user's screen before taking action. To resolve model hallucination across screen pixel grids, the system prompt injects absolute bounding-box constraints (0-1000 grid rules) and sets <code>temperature=0.0</code> to target the exact UI elements requested by the user.
-<br><br>
-<i>[Drag and drop your Phase 3 diagram image here]</i>
+
+Seeing is just as important as hearing. Now that Saiga can convert real-time audio to text instantly, the next objective is to allow Saiga to see what is on the user's screen before taking action. This is done by capturing the user's screen state to dynamically navigate their virtual space. The critical components used to lay down the multimodal vision pipeline before integrating **Muse Wonder 1.0** are Base64 encoding and the OpenAI SDK structure. 
+
+- **Base64 Processing:** This process converts raw binary image frames into standardized ASCII text strings that can be safely transferred across standard web protocols.
+- **SDK Architecture:** Leveraging an OpenAI-compatible SDK layout allows for clean, plug-and-play functionality to manage model interaction cycles smoothly without rewriting core backend execution blocks—providing full architectural freedom.
+
+### Solving the Vision & Coordinate Challenges
+
+Interfacing a large multimodal model directly with OS-level click actions introduced several distinct system engineering challenges:
+
+1. **The Hallucination & Screen Boundary Problem:** Model hallucination is a common problem in agentic workflows, especially when trying to accurately select a specific UI component via precise pixel coordinates. If the model is unaware of the maximum screen boundaries, click targets will easily drift.
+2. **The Pixel Target Fix:** To resolve this, absolute bounding-box constraints were injected directly into the core system prompt within `vision_client.py`. This normalizes the display area onto a rigid grid space, preventing the vision model from guessing coordinates blindly and forcing hyper-accurate targeting.
+3. **The Pacing & Latency Trade-off:** The process of capturing an image and converting it into a physical OS action can take a couple of seconds before hitting the low-level hardware hooks. The application must capture a high-quality frame to ensure accuracy, compress and encode it, stream it across the network, and wait for full visual reasoning to execute across the screen pixel grid. 
+
+### *Architectural Optimization Reasoning*
+While this vision pipeline introduces a high-latency step, it represents a conscious, calculated system optimization: it saves substantial API request costs, reduces unnecessary host computing resources, minimizes overall bandwidth, and prevents the backend server from lagging. It is far more efficient to process a high-quality frame once than to constantly spam cheap, low-resolution requests that fail to hit the exact UI element the user requested.
+
+#### Design
+
+<img width="732" height="114" alt="Phase3 drawio (3)" src="https://github.com/user-attachments/assets/890e5563-564f-4d0c-9795-80a114b65e37" />
+<br>
+<br>
+
 </details>
+
 
 ---
 *Developed as a solo indie project for the Meta Cerebral Valley Hackathon 2026. Built with a commitment to clean system architecture and meaningful digital accessibility.*
