@@ -108,11 +108,10 @@ The end-to-end processing pipeline handles real-time capture and streaming throu
 2. **Buffer Management:** Raw data chunks are queued up inside an asynchronous data buffer loop (`asyncio.Queue`) at a blazing rate of **12 chunks per second**, keeping microphone ingestion isolated from execution blocks.
 3. **Upstream Streaming & Filtering:** The active WebSocket tunnel routes these raw PCM audio chunks straight up to Meta's servers. The engine automatically filters out constant background room noise and microphone static hum. Saiga allows users to speak naturally at their own pace, terminating the stream gracefully only when speech pauses are detected.
 
-<br>
-
 #### Design
 
 <img width="748" height="342" alt="Phase1 drawio" src="https://github.com/user-attachments/assets/ff7746d5-da0d-4bd6-a7ff-e3652594a3d4" />
+<br>
 <br>
 
 </details>
