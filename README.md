@@ -54,6 +54,7 @@ Here is the end-to-end data pipeline from voice capture to mouse automation:
 <br>
 In order to build the complete working project. I first have to break down each step by laying the foundation first then build my way up from there. Another important thing when laying a foundation is to make sure that the foundation I set will be used consistently through the project. Constant adjustments especially in large projects can affect further phases and how it functions. The main objective of this phase is to establish low-level system hooks to verify python runtime can safely control inputs and capture screen data across both macOS and Windows environments. I will establish two foundational tech stacks: Pyautogui and Pillow.
 
+
 The primary challenge in phase 1 was figuring out how to programmatically move the mouse and take a screenshot after it moved to or landed in that specific input coordinates (x,y). This was solved by integrating two specialized Python libraries: PyAutoGUI (to programmatically drive system mouse inputs) and Pillow (to handle real-time frame capture and processing). 
 Moving into the second phase, the next step is to give Saiga the ear to capture real-time audio and stream it to Muse Voice Transcribe 1.0 model to process into text.
 
