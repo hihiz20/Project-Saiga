@@ -52,12 +52,38 @@ Here is the end-to-end data pipeline from voice capture to mouse automation:
 <details>
 <summary>⏱️ <b>Phase 1: Low-Level OS Integration</b></summary>
 <br>
-In order to build the complete working project. I first have to break down each step by laying the foundation first then build my way up from there. Another important thing when laying a foundation is to make sure that the foundation I set will be used consistently through the project. Constant adjustments especially in large projects can affect further phases and how it functions. The main objective of this phase is to establish low-level system hooks to verify python runtime can safely control inputs and capture screen data across both macOS and Windows environments. I will establish two foundational tech stacks: Pyautogui and Pillow.<br>
+<details>
+<summary>⏱️ <b>Phase 1: Low-Level OS Integration</b></summary>
+<br>
+
+In order to build the complete working project, I first have to break down each step by laying the foundation first then build my way up from there. Another important thing when laying a foundation is to make sure that the foundation I set will be used consistently through the project. Constant adjustments especially in large projects can affect further phases and how it functions. The main objective of this phase is to establish low-level system hooks to verify python runtime can safely control inputs and capture screen data across both macOS and Windows environments. I will establish two foundational tech stacks: Pyautogui and Pillow.
 
 The primary challenge in phase 1 was figuring out how to programmatically move the mouse and take a screenshot after it moved to or landed in that specific input coordinates (x,y). This was solved by integrating two specialized Python libraries: PyAutoGUI (to programmatically drive system mouse inputs) and Pillow (to handle real-time frame capture and processing). 
+
 Moving into the second phase, the next step is to give Saiga the ear to capture real-time audio and stream it to Muse Voice Transcribe 1.0 model to process into text.
 
-The execution flow begins at the Software Layer, which leverages Python libraries to abstract complex actions into simple commands. Because Python cannot talk to hardware directly, these commands pass down to the OS API Layer. This layer acts as the system gatekeeper – requesting native permissions from Windows or macOS to interact with the system hooks, verifying accessibility access, and safely bridging the gap between your code and the underlying drivers. Once permission is granted, the request passes into the Kernel Layer, which acts as the core operating system bridge to communicate with system drivers. The kernel routes these instructions directly to the specific mouse and graphics drivers running in the system background. Finally, the Hardware Layer receives these low-level system commands, instantly translating the raw digital instructions into physical actions – updating the cursor position on your monitor and reading the raw pixels from your video memory grid.
+### The Low-Level Execution Flow Matrix
+
+The execution flow begins at the Software Layer, which leverages Python libraries to abstract complex actions into simple commands. Because Python cannot talk to hardware directly, these commands pass down to the OS API Layer. This layer acts as the system gatekeeper – requesting native permissions from Windows or macOS to interact with the system hooks, verifying accessibility access, and safely bridging the gap between your code and the underlying drivers. 
+
+Once permission is granted, the request passes into the Kernel Layer, which acts as the core operating system bridge to communicate with system drivers. The kernel routes these instructions directly to the specific mouse and graphics drivers running in the system background. Finally, the Hardware Layer receives these low-level system commands, instantly translating the raw digital instructions into physical actions – updating the cursor position on your monitor and reading the raw pixels from your video memory grid.
+
+<br>
+
+| Layer | Component | Technical Execution Target |
+| :--- | :--- | :--- |
+| **Software Layer** | Python / PyAutoGUI / Pillow / os | Instantiates runtime context, manages image compression arrays, and abstracts UI requests into macro instructions. |
+| **OS API Layer** | Win32 / CoreGraphics | Handles active OS gatekeeping protocols and ensures security verification handles match valid runtime threads. |
+| **Kernel Layer** | Mouse & Graphics Drivers | Schedules thread execution blocks and interfaces directly with the background graphics pipeline architecture. |
+| **Hardware Layer** | Mouse Cursor / VRAM Frame Buffer | Implements display coordinate hardware updates and reads structural canvas layout pixels in real time. |
+
+<br>
+
+#### System Integration Blueprint
+*Drag and drop your Phase 1 software/hardware layer diagram image directly here!*
+
+</details>
+
 
 <br><br>
 <i>[Drag and drop your Phase 1 diagram image here]</i>
