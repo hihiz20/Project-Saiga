@@ -113,7 +113,7 @@ The end-to-end processing pipeline handles real-time capture and streaming throu
 #### Design
 
 <img width="748" height="342" alt="Phase1 drawio" src="https://github.com/user-attachments/assets/ff7746d5-da0d-4bd6-a7ff-e3652594a3d4" />
-
+<br>
 
 </details>
 
