@@ -118,7 +118,7 @@ The end-to-end processing pipeline handles real-time capture and streaming throu
 
 
 <details>
-<summary>👁️ <b>Phase 3: Multimodal Vision Pipeline (Muse Wonder 1.0)</b></summary>
+<summary>👁️ <b>Phase 3: Multimodal Vision Pipeline through Base64 and OpenAI SDK with Muse Wonder 1.0</b></summary>
 <br>
 
 Seeing is just as important as hearing. Now that Saiga can convert real-time audio to text instantly, the next objective is to allow Saiga to see what is on the user's screen before taking action. This is done by capturing the user's screen state to dynamically navigate their virtual space. The critical components used to lay down the multimodal vision pipeline before integrating **Muse Wonder 1.0** are Base64 encoding and the OpenAI SDK structure. 
