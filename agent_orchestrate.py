@@ -153,7 +153,7 @@ def execute_agent_loop(user_instruction, safety_cutoff=25):
             intercept_phrase = translate_saiga_response(f"Hey bro, I need your input here: {reason_msg}. Please tell me your choice.", user_instruction)
             say_text_locally(intercept_phrase, speech_duration=4.0)
             
-            print("🎤 [Active Listen] Waiting for user choice selection...")
+            print("[Active Listen] Waiting for user choice selection...")
             user_choice = listen_for_command()
             
             if user_choice and len(user_choice.strip()) > 0:
@@ -213,7 +213,7 @@ def execute_agent_loop(user_instruction, safety_cutoff=25):
 
 
 if __name__ == "__main__":
-    print("=== 🌟 Saiga Conversational Agent Active ===")
+    print("=== Saiga Conversational Agent Active ===")
     
     set_mac_microphone_volume(75)
     #say_text_locally("This is Saiga.", speech_duration=2.5)
@@ -232,7 +232,7 @@ if __name__ == "__main__":
         if "saiga" in spoken_lower:
             say_text_locally("Yes. How can I help you with today?", speech_duration=2.2)
             
-            print("🎤 [Active Listen] Grabbing user action instructions...")
+            print("[Active Listen] Grabbing user action instructions...")
             clean_instruction = listen_for_command()
             
             if clean_instruction and len(clean_instruction.strip()) > 0:
