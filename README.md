@@ -44,7 +44,7 @@ A standalone verification utility designed to ensure that the host operating sys
 <details>
 <summary>🗺️ <b>System Architecture Flowchart</b></summary>
 <br>
-<img width="3288" height="8191" alt="Muse Voice Vision Automation Pipeline-2026-11-04-004031" src="https://github.com/user-attachments/assets/f3715369-4cda-4d72-9c3d-b3d30e79c021" />
+<img width="2000" height="2000" alt="Muse Voice Vision Automation Pipeline-2026-11-04-004031" src="https://github.com/user-attachments/assets/f3715369-4cda-4d72-9c3d-b3d30e79c021" />
 <br>
 <br>
 </details>
