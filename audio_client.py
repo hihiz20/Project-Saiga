@@ -56,7 +56,7 @@ async def _stream_audio_to_meta_websocket() -> str:
         if "sessionId" not in handshake:
             raise RuntimeError(f"Handshake failed: {handshake}")
             
-        print(f"\n🎤 [Saiga Listening] Speak at your own pace... (Auto-stops when you pause)")
+        print(f"\n[Saiga Listening] Speak at your own pace... (Auto-stops when you pause)")
 
         loop = asyncio.get_running_loop()
         audio_queue: asyncio.Queue[bytes] = asyncio.Queue()
