@@ -44,9 +44,9 @@ A standalone verification utility designed to ensure that the host operating sys
 <details>
 <summary>🗺️ <b>System Architecture Flowchart</b></summary>
 <br>
-Here is the end-to-end data pipeline from voice capture to mouse automation:
-<br><br>
-<i>[Drag and drop your Architecture Design flowchart image here]</i>
+<img width="3288" height="8191" alt="Muse Voice Vision Automation Pipeline-2026-11-04-004031" src="https://github.com/user-attachments/assets/f3715369-4cda-4d72-9c3d-b3d30e79c021" />
+<br>
+<br>
 </details>
 
 
