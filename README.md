@@ -3,14 +3,14 @@
 Project Saiga is a hands-free interactive Multi-Modal AI Agent that allows control over the keyboard and mouse. Saiga works by waiting and listening for the user's command and takes that command to perform sequential desktop actions inside the user’s computer operating system (Windows or macOS) by moving the cursor or typing. The project aims to help individuals with daily automation whenever they need an extra hand. Saiga not only focuses on daily task automation but aids seniors who are having a hard time navigating the operating system including those with disabilities and hand arthritis to reduce pain. Saiga can perform actions like opening a new tab, writing an email, online shopping, help book reservations, or help users with some tasks without having to constantly copy-pasting back and forth into web-browser sidebars just to parse your screen.
 
 
-## 🚀 Core Capabilities
+## Core Capabilities
 - **Real-Time Voice Streaming:** Orchestrates real-time audio-to-text pipelines utilizing Websockets and Asyncio for ultra-low latency transcription.
 - **Vision-Driven Desktop Automation:** Processes display context using multi-modal capabilities to identify UI elements, map screen coordinates, and execute precise mouse and keyboard actions.
 - **Accessibility Optimization:** Eliminates traditional typing and complex physical peripheral interactions by converting natural voice instructions into reliable macro sequences.
 
 ---
 
-## 📂 Project Structure & Module Breakdown
+## Project Structure & Module Breakdown
 *Click on any file below to see its technical implementation details:*
 
 <details>
@@ -20,29 +20,29 @@ This is the brain of Saiga. It allows the agent to fully interact with the user�
 </details>
 
 <details>
-<summary>📂 <b>audio_client.py</b> (Muse Voice Transcribe 1.0)</summary>
+<summary><b>audio_client.py</b> (Muse Voice Transcribe 1.0)</summary>
 <br>
 Implements the <code>muse-voice-transcribe-1.0</code> pipeline that allows Saiga to capture real-time audio-to-text for processing user commands. It provides live captures and ultra-fast real-time chunking at approximately 12 chunks per second. Instead of recording and storing the audio internally, it opens a live WebSocket connection tunnel directly to Meta’s servers. Additionally, it utilizes an <code>asyncio.Queue</code> to queue up bytes from the microphone onto a virtual conveyor belt, allowing the script to stream raw audio continuously to the server without freezing or dropping words if the internet connection fluctuates.
 </details>
 
 <details>
-<summary>📂 <b>vision_client.py</b> (Muse Wonder 1.0)</summary>
+<summary><b>vision_client.py</b> (Muse Wonder 1.0)</summary>
 <br>
 Gives Saiga the ability to see what is on the user’s screen by converting the image into a binary format through a base64 encoding process, allowing this data to send requests to the backend through web protocols. A vital part of Saiga’s vision is using a normalized 0-1000 coordinate grid and checking if the task is already completed to avoid unnecessary repetitive requests to the server, saving bandwidth. To ensure Saiga is consistent in generating coordinates rather than guessing creatively, the <code>temperature=0.0</code> parameter is enforced. Powered by Meta’s Muse Wonder 1.0 for state-of-the-art multimodal reasoning.
 </details>
 
 <details>
-<summary>📂 <b>test_system.py</b> (Low-Level Verification Utility)</summary>
+<summary><b>test_system.py</b> (Low-Level Verification Utility)</summary>
 <br>
 A standalone verification utility designed to ensure that the host operating system allows PyAutoGUI and Pillow to capture screen pixels and move the cursor. Whenever Saiga is deployed to a brand new user, this isolated test file checks for permissions, ensures PyAutoGUI and Pillow are correctly installed inside the local Python virtual environment, and proves that Python can communicate with the hardware hooks independently.
 </details>
 
 ---
 
-## 🛠️ System Architecture & Phase Breakdown
+## System Architecture & Phase Breakdown
 
 <details>
-<summary>🗺️ <b>Saiga's Architecture Design (v1.0)</b></summary>
+<summary><b>Saiga's Architecture Design (v1.0)</b></summary>
 <br>
 <img width="400" height="1100" alt="Muse Voice Vision Automation Pipeline-2026-11-04-004031" src="https://github.com/user-attachments/assets/f3715369-4cda-4d72-9c3d-b3d30e79c021" />
 <br>
@@ -51,7 +51,7 @@ A standalone verification utility designed to ensure that the host operating sys
 
 
 <details>
-<summary>⏱️ <b>Phase 1: Low-Level OS Integration</b></summary>
+<summary><b>Phase 1: Low-Level OS Integration</b></summary>
 <br>
 
 In order to build the complete working project, I first have to break down each step by laying the foundation first then build my way up from there. Another important thing when laying a foundation is to make sure that the foundation I set will be used consistently through the project. Constant adjustments especially in large projects can affect further phases and how it functions. The main objective of this phase is to establish low-level system hooks to verify python runtime can safely control inputs and capture screen data across both macOS and Windows environments. I will establish two foundational tech stacks: Pyautogui and Pillow.
@@ -87,7 +87,7 @@ Once permission is granted, the request passes into the Kernel Layer, which acts
 
 
 <details>
-<summary>🗣️ <b>Phase 2: Implementing WebSockets & Asyncio for Real-Time Audio-to-Text</b></summary>
+<summary><b>Phase 2: Implementing WebSockets & Asyncio for Real-Time Audio-to-Text</b></summary>
 <br>
 
 Now that the software has performed a successful handshake with the low-level hardware, the objective of this phase is to give Saiga the ability to hear user requests in real-time. This works by implementing WebSockets, `asyncio`, and Meta's **Muse Voice Transcribe 1.0** to provide highly accurate, low-latency, and ultra-reliable fast audio-to-text transformation where continuous execution is vital.
@@ -118,7 +118,7 @@ The end-to-end processing pipeline handles real-time capture and streaming throu
 
 
 <details>
-<summary>👁️ <b>Phase 3: Multimodal Vision Pipeline through Base64 and OpenAI SDK with Muse Wonder 1.0</b></summary>
+<summary><b>Phase 3: Multimodal Vision Pipeline through Base64 and OpenAI SDK with Muse Wonder 1.0</b></summary>
 <br>
 
 Seeing is just as important as hearing. Now that Saiga can convert real-time audio to text instantly, the next objective is to allow Saiga to see what is on the user's screen before taking action. This is done by capturing the user's screen state to dynamically navigate their virtual space. The critical components used to lay down the multimodal vision pipeline before integrating **Muse Wonder 1.0** are Base64 encoding and the OpenAI SDK structure. 
