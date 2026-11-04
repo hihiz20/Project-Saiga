@@ -8,7 +8,7 @@ Project Saiga is a hands-free interactive Multi-Modal AI Agent that allows contr
 - **Vision-Driven Desktop Automation:** Processes display context using multi-modal capabilities to identify UI elements, map screen coordinates, and execute precise mouse and keyboard actions.
 - **Accessibility Optimization:** Eliminates traditional typing and complex physical peripheral interactions by converting natural voice instructions into reliable macro sequences.
 
----
+
 
 ## Project Structure & Module Breakdown
 *Click on any file below to see its technical implementation details:*
@@ -39,7 +39,7 @@ I implemented muse-voice-transcribe-1.0 that allows Saiga to capture real time a
 This is the brain of Saiga. It allows the agent to fully interact with the user’s operating system by connecting all the separate scripts audio and vision together into a single automated execution loop. It can hear user’s command or request, translate that request from audio to text, takes a screenshot of the user’s computer screen, sends that image to the vision model, and calculated the map of the coordinates directly to the screen resolution so PyAutoGUI can move the cursor and click on the exact UI element.
 </details>
 
----
+
 
 ## System Architecture & Phase Breakdown
 
