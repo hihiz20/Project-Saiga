@@ -14,27 +14,29 @@ Project Saiga is a hands-free interactive Multi-Modal AI Agent that allows contr
 *Click on any file below to see its technical implementation details:*
 
 <details>
-<summary>📂 <b>agent_orchestrate.py</b> (The Orchestration Brain)</summary>
+<summary><b>test_system.py</b> (Low-Level Verification Utility)</summary>
 <br>
-This is the brain of Saiga. It allows the agent to fully interact with the user’s operating system by connecting all the separate scripts (audio and vision) together into a single automated execution loop. It captures the user's voice command, translates that request from audio to text, captures a screenshot of the user’s computer screen, sends that image to the vision model, and calculates the map of the coordinates directly to the screen resolution so PyAutoGUI can move the cursor and click on the exact UI element.
-</details>
+A standalone verification utility. Its purpose is to ensure that the operating system allows pyautogui and Pillow to capture screen pixels and move the cursor. Whenever Saiga is deployed to a brand new user, this isolated test file checks for permissions, ensures pyautogui and Pillow are correctly installed inside the local Python virtual environment, and proves that Python can communicate with the hardware. This ensures that the core hardware hooks work independently before adding more complex elements.
 
-<details>
-<summary><b>audio_client.py</b> (Muse Voice Transcribe 1.0)</summary>
-<br>
-Implements the <code>muse-voice-transcribe-1.0</code> pipeline that allows Saiga to capture real-time audio-to-text for processing user commands. It provides live captures and ultra-fast real-time chunking at approximately 12 chunks per second. Instead of recording and storing the audio internally, it opens a live WebSocket connection tunnel directly to Meta’s servers. Additionally, it utilizes an <code>asyncio.Queue</code> to queue up bytes from the microphone onto a virtual conveyor belt, allowing the script to stream raw audio continuously to the server without freezing or dropping words if the internet connection fluctuates.
 </details>
 
 <details>
 <summary><b>vision_client.py</b> (Muse Wonder 1.0)</summary>
 <br>
-Gives Saiga the ability to see what is on the user’s screen by converting the image into a binary format through a base64 encoding process, allowing this data to send requests to the backend through web protocols. A vital part of Saiga’s vision is using a normalized 0-1000 coordinate grid and checking if the task is already completed to avoid unnecessary repetitive requests to the server, saving bandwidth. To ensure Saiga is consistent in generating coordinates rather than guessing creatively, the <code>temperature=0.0</code> parameter is enforced. Powered by Meta’s Muse Wonder 1.0 for state-of-the-art multimodal reasoning.
+This gives Saiga the ability to see what is on the user’s screen by converting the image into a binary format through a process called base64 that allows this data to send requests to the backend through web protocols. Another vital part of Saiga’s vision is to use a normalized 0-1000 coordinate grid and to check if the task is completed already to avoid unnecessary repetitive requests to the server, saving bandwidth. Additionally, to ensure that Saiga is consistent in generating the coordinates rather than guessing creatively, I implemented the “temperature=0.0” parameter that provides consistency and accuracy when generating coordinates for the cursor to move to. The visual backend of Saiga is powered by Meta’s Muse Wonder 1.0 that allows the AI to perform state-of-the-art multimodal reasoning that was designed to perform complex GUI tasks and manage long-horizon agentic workflows without losing track of the user's primary goal.
+
 </details>
 
 <details>
-<summary><b>test_system.py</b> (Low-Level Verification Utility)</summary>
+<summary><b>audio_client.py</b> (Muse Voice Transcribe 1.0)</summary>
 <br>
-A standalone verification utility designed to ensure that the host operating system allows PyAutoGUI and Pillow to capture screen pixels and move the cursor. Whenever Saiga is deployed to a brand new user, this isolated test file checks for permissions, ensures PyAutoGUI and Pillow are correctly installed inside the local Python virtual environment, and proves that Python can communicate with the hardware hooks independently.
+I implemented muse-voice-transcribe-1.0 that allows Saiga to capture real time audio to text for processing user commands. It provides live captures and ultra fast real-time chunking and chunks about 12 times per second. Instead of recording and storing the audio internally, it opens a live WebSocket connection tunnel directly to Meta’s servers. Additionally, I use an asyncio.Queue to queue up bytes from the microphone onto a virtual conveyor belt, allowing the script to stream raw audio continuously to the server without freezing or dropping words if the internet connection fluctuates. 
+</details>
+
+<details>
+<summary><b>agent_orchestrate.py</b> (The Orchestration Brain)</summary>
+<br>
+This is the brain of Saiga. It allows the agent to fully interact with the user’s operating system by connecting all the separate scripts audio and vision together into a single automated execution loop. It can hear user’s command or request, translate that request from audio to text, takes a screenshot of the user’s computer screen, sends that image to the vision model, and calculated the map of the coordinates directly to the screen resolution so PyAutoGUI can move the cursor and click on the exact UI element.
 </details>
 
 ---
