@@ -7,7 +7,7 @@ import sounddevice as sd
 import websockets
 from dotenv import load_dotenv
 
-# Automatically load system variables from our local hidden .env block
+# Automatically load system variables from my local hidden .env block
 load_dotenv()
 
 # Global fallback assignment to catch missing environment parameters
@@ -36,7 +36,9 @@ async def _stream_audio_to_meta_websocket() -> str:
     MAX_RECORD_TIMEOUT = 45.0 # Absolute safety cutoff so it doesn't stream forever if background noise is loud
     
     final_transcript = ""
+    
 
+    
     async with websockets.connect(uri, open_timeout=30) as ws:
         # Step 1: Send configuration header frame
         await ws.send(
@@ -82,7 +84,7 @@ async def _stream_audio_to_meta_websocket() -> str:
                 transcript = event["transcript"]
                 padding = " " * max(0, previous_length - len(transcript))
                 end = "\n" if event.get("final") else "\r"
-                print(f"👉 Real-time Translation: {transcript}{padding}", end=end, flush=True)
+                print(f"Real-time Translation: {transcript}{padding}", end=end, flush=True)
                 previous_length = len(transcript)
                 
                 if event.get("final") or len(transcript) > len(final_transcript):
@@ -95,7 +97,7 @@ async def _stream_audio_to_meta_websocket() -> str:
         chunk_seconds = 80 / 1000.0  # Each chunk represents 0.08 seconds of time
         start_time = loop.time()
         
-        # FIXED: Safety delay to prevent picking up immediate speaker echo or mic hardware pops
+        # A safety delay to prevent picking up immediate speaker echo or mic hardware pops
         PRE_LISTEN_DELAY = 1.0  
 
         # Step 2: Open hardware audio device buffer stream mapping
@@ -112,7 +114,7 @@ async def _stream_audio_to_meta_websocket() -> str:
                 
                 elapsed_time = loop.time() - start_time
                 
-                # FIXED: Skip volume analysis during the initial pre-listen delay window
+                # Skip volume analysis during the initial pre-listen delay window
                 if elapsed_time < PRE_LISTEN_DELAY:
                     continue
                 
@@ -127,13 +129,13 @@ async def _stream_audio_to_meta_websocket() -> str:
                 
                 max_amplitude = max(samples) if samples else 0
                 
-                # Check if the audio chunk volume falls below our silent baseline
+                # To check if the audio chunk volume falls below our silent baseline
                 if max_amplitude < SILENCE_THRESHOLD:
                     silence_accumulator += chunk_seconds
                 else:
                     silence_accumulator = 0.0  # Reset the clock entirely because voice was detected
                 
-                # FIXED: Only check for silence cutoff after the pre-listen safety window passes
+                # This only check for silence cutoff after the pre-listen safety window passes
                 if silence_accumulator >= SILENCE_DURATION and elapsed_time > (PRE_LISTEN_DELAY + 1.0):
                     print("\n[Silence Detected] Finalizing transcription context...")
                     break
