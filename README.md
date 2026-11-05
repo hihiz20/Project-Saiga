@@ -147,22 +147,24 @@ While this vision pipeline introduces a high-latency step, it represents a consc
 
 </details>
 
-
+</details>
 ## Current Limitations & Future Roadmap
 
-As an initial solo prototype built under tight hackathon constraints, Project Saiga is fully operational but has specific architectural constraints that define its next development cycle:
+Project Saiga is fully operational, and the initial development phase has mapped out clear constraints and targets for the next version release:
 
 ### Current Limitations
-- **Resolution Coupling:** The cursor coordinate translation matrix is currently hardcoded to scale specifically for a native 1710x1107 display layout.
-- **Single-Threaded Action Blocking:** While audio ingestion is fully asynchronous, the sequential execution loop blocks downstream audio capture for a few seconds while waiting for the multimodal vision reasoning payload to complete its round-trip network transit.
-- **Platform Locks:** The audio volume ducking and text-to-speech feedback mechanisms rely heavily on native macOS subprocesses (`osascript` and `say`), limiting immediate plug-and-play functionality on Windows environments without configuration overrides.
+- **Platform Coupling:** The audio volume hardware ducking (`osascript`) and voice feedback mechanisms (`say`) utilize native macOS backend utilities, requiring standalone environment overrides to run seamlessly on Windows systems.
+- **Resolution Scaling:** Display coordinate maps are currently set to scale for localized monitor dimensions, requiring a manual adjustment parameter for different screens.
+- **Processing Latency:** Handing off high-resolution image frames to cloud models introduces a short network processing pause during long-horizon agentic workflows.
 
 ### Future Improvements
-1. **Dynamic Resolution Normalization:** Implement automated cross-platform display monitoring to read host canvas pixel grids dynamically, eliminating hardcoded scalar values.
-2. **Local Edge Inference Hybridization:** Migrate lightweight visual bounding-box predictions to local ONNX or optimized edge models to eliminate API network latency and round-trip transit delays.
-3. **Cross-Platform Audio Layering:** Abstract system audio controls and speech profiles into a unified Python abstraction layer to support native Windows audio drivers alongside macOS CoreGraphics hooks.
+1. **Response Speed Optimization:** Implement efficient predictive caching models to reduce multi-modal round-trip times and unlock faster overall execution speed.
+2. **Deterministic Targeting Accuracy:** Refine prompt engineering boundary boxes to drive near-perfect pixel coordinates and higher layout accuracy across all desktop tasks.
+3. **Complex Horizon Orchestration:** Train the agent execution loop to handle deeply nested multi-step processes, such as long-form data entry and multi-window management.
+4. **Hardened Safety & Security:** Build localized execution sandboxes and encrypted environment gates to ensure absolute data privacy when handling on-screen user actions.
 
 
+</details>
 
 ---
 *Developed as a solo indie project for the Meta Cerebral Valley Hackathon 2026. Built with a commitment to clean system architecture and meaningful digital accessibility.*
