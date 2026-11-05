@@ -148,5 +148,21 @@ While this vision pipeline introduces a high-latency step, it represents a consc
 </details>
 
 
+## Current Limitations & Future Roadmap
+
+As an initial solo prototype built under tight hackathon constraints, Project Saiga is fully operational but has specific architectural constraints that define its next development cycle:
+
+### Current Limitations
+- **Resolution Coupling:** The cursor coordinate translation matrix is currently hardcoded to scale specifically for a native 1710x1107 display layout.
+- **Single-Threaded Action Blocking:** While audio ingestion is fully asynchronous, the sequential execution loop blocks downstream audio capture for a few seconds while waiting for the multimodal vision reasoning payload to complete its round-trip network transit.
+- **Platform Locks:** The audio volume ducking and text-to-speech feedback mechanisms rely heavily on native macOS subprocesses (`osascript` and `say`), limiting immediate plug-and-play functionality on Windows environments without configuration overrides.
+
+### Future Improvements
+1. **Dynamic Resolution Normalization:** Implement automated cross-platform display monitoring to read host canvas pixel grids dynamically, eliminating hardcoded scalar values.
+2. **Local Edge Inference Hybridization:** Migrate lightweight visual bounding-box predictions to local ONNX or optimized edge models to eliminate API network latency and round-trip transit delays.
+3. **Cross-Platform Audio Layering:** Abstract system audio controls and speech profiles into a unified Python abstraction layer to support native Windows audio drivers alongside macOS CoreGraphics hooks.
+
+
+
 ---
 *Developed as a solo indie project for the Meta Cerebral Valley Hackathon 2026. Built with a commitment to clean system architecture and meaningful digital accessibility.*
