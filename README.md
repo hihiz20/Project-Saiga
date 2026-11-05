@@ -147,10 +147,10 @@ While this vision pipeline introduces a high-latency step, it represents a consc
 
 </details>
 
+---
+
 <details>
 <summary><b>Current Limitations & Future Roadmap</b></summary>
-
-## Current Limitations & Future Roadmap
 
 Project Saiga is fully operational, and the initial development phase has mapped out clear constraints and targets for the next version release:
 
