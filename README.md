@@ -147,13 +147,15 @@ While this vision pipeline introduces a high-latency step, it represents a consc
 
 </details>
 
-</details>
+<details>
+<summary><b>Current Limitations & Future Roadmap</b></summary>
+
 ## Current Limitations & Future Roadmap
 
 Project Saiga is fully operational, and the initial development phase has mapped out clear constraints and targets for the next version release:
 
 ### Current Limitations
-- **Platform Coupling:** The audio volume hardware ducking (`osascript`) and voice feedback mechanisms (`say`) utilize native macOS backend utilities, requiring standalone environment overrides to run seamlessly on Windows systems.
+- **Platform Coupling:** The audio volume hardware ducking ('osascript') and voice feedback mechanisms ('say') utilize native macOS backend utilities, requiring standalone environment overrides to run seamlessly on Windows systems.
 - **Resolution Scaling:** Display coordinate maps are currently set to scale for localized monitor dimensions, requiring a manual adjustment parameter for different screens.
 - **Processing Latency:** Handing off high-resolution image frames to cloud models introduces a short network processing pause during long-horizon agentic workflows.
 
@@ -163,8 +165,8 @@ Project Saiga is fully operational, and the initial development phase has mapped
 3. **Complex Horizon Orchestration:** Train the agent execution loop to handle deeply nested multi-step processes, such as long-form data entry and multi-window management.
 4. **Hardened Safety & Security:** Build localized execution sandboxes and encrypted environment gates to ensure absolute data privacy when handling on-screen user actions.
 
-
 </details>
+
 
 ---
 *Developed as a solo indie project for the Meta Cerebral Valley Hackathon 2026. Built with a commitment to clean system architecture and meaningful digital accessibility.*
