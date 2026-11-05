@@ -147,7 +147,6 @@ While this vision pipeline introduces a high-latency step, it represents a consc
 
 </details>
 
----
 
 <details>
 <summary><b>Current Limitations & Future Roadmap</b></summary>
